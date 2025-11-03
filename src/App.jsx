@@ -8,10 +8,13 @@ import BooksGrid from "./components/BooksGrid";
 import AddBookModal from "./components/AddBookModal";
 import EditBookModal from "./components/EditBookModal";
 import FilterSection from "./components/FilterSection";
+import LoanManagement from "./components/LoanManagement";
 
 export default function App() {
   // Start empty to meet requirement: "The app should be empty of books initially."
   const [books, setBooks] = useState([]);
+  const [loans, setLoans] = useState([]);
+  const [currentView, setCurrentView] = useState("books"); // "books" or "loans"
 
   const [showModal, setShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -36,10 +39,23 @@ export default function App() {
     }
   }, []);
 
+  // Load loans from localStorage on component mount
+  useEffect(() => {
+    const savedLoans = localStorage.getItem('loans');
+    if (savedLoans) {
+      setLoans(JSON.parse(savedLoans));
+    }
+  }, []);
+
   // Save books to localStorage whenever books change
   useEffect(() => {
     localStorage.setItem('books', JSON.stringify(books));
   }, [books]);
+
+  // Save loans to localStorage whenever loans change
+  useEffect(() => {
+    localStorage.setItem('loans', JSON.stringify(loans));
+  }, [loans]);
 
   const handleSelect = (clickedBook) => {
     setBooks((prev) =>
@@ -147,6 +163,14 @@ export default function App() {
     setSelectedAuthor(author);
   };
 
+  const handleCreateLoan = (loanData) => {
+    const newLoan = {
+      ...loanData,
+      loanDate: new Date().toISOString(),
+    };
+    setLoans((prev) => [...prev, newLoan]);
+  };
+
   // Get unique authors for filter dropdown
   const authors = [...new Set(books.map(book => book.author))].sort();
 
@@ -157,21 +181,60 @@ export default function App() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      <Header title="Vy’s Book Catalog 🫶🐹" />
+      <Header title="Vy's Book Catalog 🫶🐹" />
       <main style={{ flex: 1, padding: "30px" }}>
-        <FilterSection
-          authors={authors}
-          selectedAuthor={selectedAuthor}
-          onAuthorFilterChange={handleAuthorFilterChange}
-        />
-        <div className="main-layout">
-          <LeftColumn
-            onOpenAdd={() => setShowModal(true)}
-            onUpdate={handleUpdate}
-            onDelete={handleDelete}
+        {currentView === "books" ? (
+          <>
+            <div style={{ display: "flex", justifyContent: "flex-start", marginBottom: "20px" }}>
+              <button
+                onClick={() => setCurrentView("loans")}
+                style={{
+                  padding: "12px 24px",
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  borderRadius: "10px",
+                  border: "1px solid #BB6D40",
+                  background: "#BB6D40",
+                  color: "#ffffff",
+                  cursor: "pointer",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseOver={(e) => {
+                  e.target.style.background = "#9e5b36";
+                  e.target.style.borderColor = "#9e5b36";
+                  e.target.style.color = "#ffffff";
+                }}
+                onMouseOut={(e) => {
+                  e.target.style.background = "#BB6D40";
+                  e.target.style.borderColor = "#BB6D40";
+                  e.target.style.color = "#ffffff";
+                }}
+              >
+                Manage Loans
+              </button>
+            </div>
+            <FilterSection
+              authors={authors}
+              selectedAuthor={selectedAuthor}
+              onAuthorFilterChange={handleAuthorFilterChange}
+            />
+            <div className="main-layout">
+              <LeftColumn
+                onOpenAdd={() => setShowModal(true)}
+                onUpdate={handleUpdate}
+                onDelete={handleDelete}
+              />
+              <BooksGrid books={filteredBooks} loans={loans} onSelect={handleSelect} />
+            </div>
+          </>
+        ) : (
+          <LoanManagement
+            books={books}
+            loans={loans}
+            onCreateLoan={handleCreateLoan}
+            onSwitchToBooks={() => setCurrentView("books")}
           />
-          <BooksGrid books={filteredBooks} onSelect={handleSelect} />
-        </div>
+        )}
       </main>
       <Footer />
 
