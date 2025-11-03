@@ -1,0 +1,258 @@
+/* ===== Add Button ===== */
+.add-button {
+    width: 250px;
+    height: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px dashed #d4a373;
+    border-radius: 16px;
+    cursor: pointer;
+    background: #f9efe7;
+    color: #8c5c3a;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.add-button:hover {
+    transform: scale(1.05);
+}
+
+/* ===== Books Grid ===== */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    justify-items: center;
+    align-items: start;
+}
+
+/* ===== Modal Overlay ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 20px;
+}
+
+/* ===== Modal Form ===== */
+.modal-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 450px;
+    /* form to hơn */
+    max-width: 90vw;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== Modal Inputs ===== */
+.modal-form input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* ===== Modal Submit Button ===== */
+.modal-form button {
+    padding: 12px;
+    font-size: 16px;
+    background: #b08968;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.modal-form button:hover {
+    background: #a46d4a;
+}
+
+/* ===== Book Card (Book.jsx) ===== */
+.book-card {
+    width: 220px;
+    height: 360px;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: #fdf6f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.book-card.selected {
+    background: #ffe0b3;
+    box-shadow: 0 0 0 3px #b08968;
+}
+
+.book-card img {
+    max-width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+}
+
+.book-card h3 {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.book-card p {
+    font-size: 13px;
+    color: #8b6f47;
+}
+
+.book-card a {
+    font-size: 13px;
+    background: #b08968;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+.book-card button.remove-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+/* ===== Left Column Buttons ===== */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* spacing between buttons */
+}
+
+/* Add Button */
+.add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px dashed #d0bfa2;
+    background: #f9efe7;
+    color: #b08968;
+    font-size: 24px;
+    font-weight: bold;
+    height: 360px;
+    width: 220px;
+    /* match book card width */
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.add-button:hover {
+    transform: scale(1.05);
+    background: #f0e3d9;
+}
+
+/* Update & Delete Buttons */
+.left-column button {
+    width: 220px;
+    /* match Add button width */
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 16px;
+    /* same as Add button */
+    border: 1px solid #d0bfa2;
+    background: #f9efe7;
+    /* same tone as Add button */
+    color: #b08968;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.left-column button:hover {
+    background: #f0e3d9;
+    color: #a46d4a;
+    border-color: #b08968;
+}
+
+/* ===== Modal Overlay ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+/* ===== Modal Form ===== */
+.modal-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    min-width: 450px;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Title */
+.modal-form h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 16px;
+}
+
+/* Input Fields */
+.modal-form input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* Modal Submit Button */
+.modal-form button {
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    background-color: #d6b794;
+    /* green like your example */
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-form button:hover {
+    background-color: #edc3a5;
+}
