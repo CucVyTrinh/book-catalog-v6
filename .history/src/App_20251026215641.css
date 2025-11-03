@@ -1,0 +1,179 @@
+/* ===== Books Grid ===== */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+    justify-items: center;
+    align-items: start;
+}
+
+/* ===== Add Button ===== */
+.add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px dashed #d0bfa2;
+    background: #f9efe7;
+    color: #b08968;
+    font-size: 24px;
+    font-weight: bold;
+    height: 360px;
+    width: 220px;
+    /* match book card width */
+    border-radius: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.add-button:hover {
+    transform: scale(1.05);
+    background: #f0e3d9;
+}
+
+/* ===== Left Column Buttons ===== */
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    /* spacing between buttons */
+}
+
+.left-column button {
+    width: 220px;
+    /* match Add button width */
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 16px;
+    border: 1px solid #d0bfa2;
+    background: #f9efe7;
+    color: #b08968;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.left-column button:hover {
+    background: #f0e3d9;
+    color: #a46d4a;
+    border-color: #b08968;
+}
+
+/* ===== Modal Overlay ===== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    padding: 20px;
+}
+
+/* ===== Modal Form ===== */
+.modal-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 450px;
+    max-width: 90vw;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-form h2 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+/* Align labels left, inputs right like your screenshot */
+.modal-form label {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    align-items: center;
+    gap: 16px;
+}
+
+.modal-form label span {
+    font-weight: 600;
+}
+
+.modal-form input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.modal-form button {
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    background-color: #4f855a;
+    /* green-ish like screenshot */
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 160px;
+    margin-left: auto;
+    /* push SAVE to the right */
+}
+
+.modal-form button:hover {
+    opacity: 0.9;
+}
+
+/* ===== Book Card ===== */
+.book-card {
+    width: 220px;
+    height: 360px;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: #fdf6f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.book-card.selected {
+    background: #ffe0b3;
+    box-shadow: 0 0 0 3px #b08968;
+}
+
+.book-card img {
+    max-width: 100%;
+    max-height: 140px;
+    object-fit: contain;
+}
+
+.book-card h3 {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.book-card p {
+    font-size: 13px;
+    color: #8b6f47;
+}
+
+.book-card a {
+    font-size: 13px;
+    background: #b08968;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+}
